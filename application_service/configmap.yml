@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tfserving-configs
+data:
+  MODEL_NAME: book_recommender
+  MODEL_PATH: gs://kagglex-book-recommender-bucket/candidate_model4
