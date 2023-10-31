@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: tfserving-configs
+data:
+    MODEL_NAME: candidate_model_signature_def
+    MODEL_PATH: gs://kagglx-book-recommender-bucket/candidate_model_signature_def

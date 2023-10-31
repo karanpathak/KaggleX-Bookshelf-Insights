@@ -1,0 +1,20 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/kagglx-book-recommender/books_recommender:v5', '.']
+  timeout: 180s
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/kagglx-book-recommender/books_recommender:v5']
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: "bash"
+  args:
+  - "-c"
+  - |
+    echo "Docker Container Built"
+    ls -la
+    ls -al models/
+- name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=K8s/
+  - --location=us-west2
+  - --cluster=mykube
